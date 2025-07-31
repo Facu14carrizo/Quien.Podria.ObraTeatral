@@ -4,14 +4,14 @@ import { Star, Calendar, MapPin, Users, Clock, Theater, Instagram } from 'lucide
 // Import images
 import flyerImage from './assets/flyer3.jpg';
 import logoImage from './assets/logo.png';
-import camilaImage from './assets/camila.png';
+import claraImage from './assets/camila.png';
 import fherImage from './assets/fher.png';
-import anaelImage from './assets/anael.png';
+import lunaImage from './assets/anael.png';
 import emiImage from './assets/emi.png';
 import magaliImage from './assets/magali.png';
-import rubiaImage from './assets/rubia.png';
-import mauroImage from './assets/mauro.png';
-import lucaImage from './assets/luca.png';
+import piliImage from './assets/rubia.png';
+import pabloImage from './assets/mauro.png';
+import octavioImage from './assets/luca.png';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -62,14 +62,14 @@ function App() {
   }, []);
 
   const characters = [
-    { name: 'Camila', image: camilaImage },
+    { name: 'Clara', image: claraImage },
     { name: 'CHORI', image: fherImage },
-    { name: 'Anael', image: anaelImage },
+    { name: 'Octavio', image: octavioImage },
+    { name: 'Luna', image: lunaImage },
     { name: 'Severino', image: emiImage },
     { name: 'Leticia', image: magaliImage },
-    { name: 'Luana', image: rubiaImage },
-    { name: 'Mauro', image: mauroImage },
-    { name: 'Luca', image: lucaImage }
+    { name: 'Pili', image: piliImage },
+    { name: 'Pablo', image: pabloImage }
   ];
 
   // Touch/Mouse handlers for carousel
@@ -133,11 +133,11 @@ function App() {
                 />
               </div>
             <p>
-              Una noche cualquiera, siete amigxs y un jueguito de cartas que arranca inocente… hasta que "Quién podría" empieza a destapar secretos, levantar máscaras y poner a todos en jaque. Traiciones disfrazadas de chistes, ex que reaparecen, anécdotas insólitas y un empleado tirando frases en guaraní que te descoloca. Una comedia argenta y frenética donde nadie está listo para la verdad.
+              Una noche cualquiera, siete amigxs y un jueguito de cartas que arranca inocente… hasta que "¿Quién Podría?" empieza a destapar secretos, levantar máscaras y poner a todos en jaque. Traiciones disfrazadas de chistes, ex que reaparecen, anécdotas insólitas y un empleado tirando frases en guaraní que te descoloca. Una comedia argenta y frenética donde nadie está listo para la verdad.
             </p>
             <div className="hero-final-text">
-              <p>Te vas a reír, te vas a incomodar… y seguro salís preguntándote:</p>
-              <p>¿Y yo, de cuál de este grupo seré?</p>
+              <p>Te vas a reír, te vas a incomodar y seguro salís preguntándote:</p>
+              <p>Y yo... ¿de cuál de este grupo seré?</p>
             </div>
           </div>
           
@@ -288,9 +288,9 @@ function App() {
                   <Instagram />
                   <span>@la_colmena_teatro</span>
                 </a>
-                <a href="https://instagram.com/Quienpodria.laobra" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/Quienpodria.obra" target="_blank" rel="noopener noreferrer">
                   <Instagram />
-                  <span>@Quienpodria.laobra</span>
+                  <span>@Quienpodria.obra</span>
                 </a>
                 <a href="https://tiktok.com/@Quienpodria.laobra" target="_blank" rel="noopener noreferrer">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
