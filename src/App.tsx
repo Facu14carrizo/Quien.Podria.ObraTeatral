@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Star, Calendar, MapPin, Users, Clock, Theater, Instagram } from 'lucide-react';
+import { useAnalytics } from './hooks/useAnalytics';
+import { 
+  trackWhatsAppClick, 
+  trackTrailerClick, 
+  trackLocationClick, 
+  trackSocialMediaClick,
+  trackCharacterView 
+} from './utils/analytics';
 
 // Import images
 import flyerImage from './assets/flyer3.jpg';
@@ -20,6 +28,9 @@ function App() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Inicializar Google Analytics
+  useAnalytics();
 
   useEffect(() => {
     // Trigger animations after component mounts
@@ -111,6 +122,9 @@ function App() {
         behavior: 'smooth'
       });
       setCurrentSlide(index);
+      
+      // Track character view
+      trackCharacterView(characters[index].name);
     }
   };
 
@@ -265,6 +279,7 @@ function App() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="location-button"
+                      onClick={trackLocationClick}
                     >
                       Cómo llegar
                     </a>
@@ -277,6 +292,7 @@ function App() {
                 className="cta-button reveal-scale"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={trackWhatsAppClick}
               >
                 Reservar Entradas
               </a>
@@ -284,15 +300,15 @@ function App() {
               <div className="social-links reveal-up">
                 <p>Seguinos en nuestras redes:</p>
                 <div className="social-icons reveal-up">
-                <a href="https://instagram.com/la_colmena_teatro" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/la_colmena_teatro" target="_blank" rel="noopener noreferrer" onClick={() => trackSocialMediaClick('instagram_colmena')}>
                   <Instagram />
                   <span>@la_colmena_teatro</span>
                 </a>
-                <a href="https://instagram.com/Quienpodria.obra" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/Quienpodria.obra" target="_blank" rel="noopener noreferrer" onClick={() => trackSocialMediaClick('instagram_obra')}>
                   <Instagram />
                   <span>@Quienpodria.obra</span>
                 </a>
-                <a href="https://tiktok.com/@Quienpodria.laobra" target="_blank" rel="noopener noreferrer">
+                <a href="https://tiktok.com/@Quienpodria.laobra" target="_blank" rel="noopener noreferrer" onClick={() => trackSocialMediaClick('tiktok')}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                   </svg>
@@ -306,6 +322,7 @@ function App() {
                 className="trailer-button reveal-scale"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={trackTrailerClick}
               >
                 🎬 Ver Trailer
               </a>
