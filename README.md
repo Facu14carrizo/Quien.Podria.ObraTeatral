@@ -1,6 +1,5 @@
 # 🎭 Quién Podría - Landing Page
 
-Una landing page moderna y atractiva para la obra teatral "Quién Podría", una comedia argentina sobre secretos, traiciones y verdades incómodas.
 
 ## 🎬 Demo
 
