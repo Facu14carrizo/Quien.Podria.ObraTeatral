@@ -1,9 +1,8 @@
 # 🎭 Quién Podría - Landing Page
 
 
-## 🎬 Demo
 
-![Demo de la Landing Page](./public/obrademo.gif)
+![Demo de la Landing Page](./src/assets/flyer-demo.jpg)
 
 **[🌐 Demo en Vivo](https://quien-podria-obra.netlify.app)**
 
