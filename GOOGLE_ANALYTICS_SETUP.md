@@ -1,4 +1,4 @@
-Eventos que se trackean automáticamente
+Eventos que se trackean automátD EIicamente
 
 - **Vistas de página**: Se registran automáticamente
 - **Clics en WhatsApp**: Cuando alguien hace clic en "Reservar Entradas"
@@ -14,4 +14,4 @@ Métricas importantes a monitorear
 - **Tiempo en sitio**: Qué tan interesante es tu contenido
 - **Tasa de rebote**: Porcentaje de visitantes que se van sin interactuar
 - **Páginas por sesión**: Qué tan explorativo es tu sitio
-- **Conversiones**: Clics en WhatsApp, trailer, etc. 
+- **Conversiones**: Clics en WhatsApp, trailer, etc. QW

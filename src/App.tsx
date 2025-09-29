@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Star, Calendar, MapPin, Users, Clock, Theater, Instagram } from 'lucide-react';
+import { Star, Calendar, MapPin, Users, Clock, Theater, Instagram, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAnalytics } from './hooks/useAnalytics';
 import { 
   trackWhatsAppClick, 
@@ -83,11 +83,19 @@ function App() {
     { name: 'Pablo', image: pabloImage }
   ];
 
-  // Touch/Mouse handlers for carousel
+  // Mejor lógica táctil para carrusel
+  const [dragDirection, setDragDirection] = useState<'none' | 'horizontal' | 'vertical'>('none');
+  const [startY, setStartY] = useState(0);
+  const [hasMoved, setHasMoved] = useState(false);
+
   const handleStart = (e: React.TouchEvent | React.MouseEvent) => {
     setIsDragging(true);
+    setDragDirection('none');
+    setHasMoved(false);
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
     setStartX(clientX);
+    setStartY(clientY);
     if (carouselRef.current) {
       setScrollLeft(carouselRef.current.scrollLeft);
     }
@@ -95,14 +103,38 @@ function App() {
 
   const handleMove = (e: React.TouchEvent | React.MouseEvent) => {
     if (!isDragging || !carouselRef.current) return;
-    e.preventDefault();
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const walk = (startX - clientX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft + walk;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    // Detectar dirección del drag
+    if (dragDirection === 'none') {
+      const dx = Math.abs(clientX - startX);
+      const dy = Math.abs(clientY - startY);
+      if (dx > 12 && dx > dy) {
+        setDragDirection('horizontal');
+      } else if (dy > 12 && dy > dx) {
+        setDragDirection('vertical');
+        setIsDragging(false); // Cancelar drag si es vertical
+        return;
+      }
+    }
+    if (dragDirection === 'horizontal') {
+      e.preventDefault(); // Solo prevenir scroll si es horizontal
+      setHasMoved(true);
+      const walk = (startX - clientX);
+      carouselRef.current.scrollLeft = scrollLeft + walk;
+    }
+    // Si es vertical, no hacemos nada y dejamos el scroll natural
   };
 
   const handleEnd = () => {
+    if (!hasMoved) {
+      setIsDragging(false);
+      setDragDirection('none');
+      return;
+    }
     setIsDragging(false);
+    setDragDirection('none');
+    setHasMoved(false);
     if (carouselRef.current) {
       // Calculate card width based on screen size
       const isMobile = window.innerWidth <= 767;
@@ -110,6 +142,13 @@ function App() {
       const newIndex = Math.round(carouselRef.current.scrollLeft / cardWidth);
       setCurrentSlide(Math.max(0, Math.min(newIndex, characters.length - 1)));
     }
+  };
+
+  // Para touchcancel y mouseleave
+  const handleCancel = () => {
+    setIsDragging(false);
+    setDragDirection('none');
+    setHasMoved(false);
   };
 
   const scrollToSlide = (index: number) => {
@@ -179,16 +218,29 @@ function App() {
       <section className="characters">
         <div className="container">
           <div className="carousel-container">
+            {/* Botón Izquierdo */}
+            {currentSlide > 0 && (
+              <button
+                className="carousel-arrow left"
+                aria-label="Anterior"
+                onClick={() => scrollToSlide(currentSlide - 1)}
+              >
+                <ChevronLeft size={32} />
+              </button>
+            )}
+            {/* Botón Derecho */}
+            {currentSlide < characters.length - 1 && (
+              <button
+                className="carousel-arrow right"
+                aria-label="Siguiente"
+                onClick={() => scrollToSlide(currentSlide + 1)}
+              >
+                <ChevronRight size={32} />
+              </button>
+            )}
             <div 
               className="carousel-track"
               ref={carouselRef}
-              onTouchStart={handleStart}
-              onTouchMove={handleMove}
-              onTouchEnd={handleEnd}
-              onMouseDown={handleStart}
-              onMouseMove={handleMove}
-              onMouseUp={handleEnd}
-              onMouseLeave={handleEnd}
             >
               {characters.map((character, index) => (
                 <div 
@@ -240,7 +292,7 @@ function App() {
                 <Theater className="detail-icon" />
                 <div>
                   <strong>Género</strong>
-                  <p>Comedia moderna, coral, SIT COM</p>
+                  <p>Comedia moderna, SIT COM</p>
                 </div>
               </div>
               <div className="detail-item reveal-right">
@@ -266,7 +318,7 @@ function App() {
                   <Calendar className="info-icon" />
                   <div>
                     <strong>Próxima Fecha</strong>
-                    <p>Sábado 9 de Agosto</p>
+                    <p>Sábado 11 de Octubre  20:00hs</p>
                   </div>
                 </div>
                 <div className="info-item reveal-right">
