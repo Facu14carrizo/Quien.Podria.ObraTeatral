@@ -318,7 +318,7 @@ function App() {
                   <Calendar className="info-icon" />
                   <div>
                     <strong>Próxima Fecha</strong>
-                    <p>Sábado 11 de Octubre  20:00hs</p>
+                    <p>Viernes 8 de Noviembre  20:00hs</p>
                   </div>
                 </div>
                 <div className="info-item reveal-right">
