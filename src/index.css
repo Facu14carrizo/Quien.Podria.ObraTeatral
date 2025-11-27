@@ -691,6 +691,17 @@ body {
   margin: 0;
 }
 
+.footer a {
+  color: #ffd93d;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ff6b6b;
+  text-decoration: underline;
+}
+
 .carousel-arrow {
   position: absolute;
   top: 50%;

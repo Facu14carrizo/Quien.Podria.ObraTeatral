@@ -318,7 +318,7 @@ function App() {
                   <Calendar className="info-icon" />
                   <div>
                     <strong>Próxima Fecha</strong>
-                    <p>Viernes 8 de Noviembre  20:00hs</p>
+                    <p>Domingo 7 de Diciembre  19:30hs</p>
                   </div>
                 </div>
                 <div className="info-item reveal-right">
@@ -386,6 +386,7 @@ function App() {
       <footer className="footer">
         <div className="container">
           <p>&copy; 2025 Quién Podría - La Colmena Teatro</p>
+          <p>Desarrollado por <a href="https://waveframe.com.ar" target="_blank" rel="noopener noreferrer">WaveFrame Studio</a></p>
         </div>
       </footer>
     </div>
